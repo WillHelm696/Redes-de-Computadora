@@ -35,11 +35,11 @@ void analizar_tramas(string tramas){
                         break;
                     }
                     tramas_secuencia_escape ++ ; // En caso de encontrar un 7D se suma a la secuencia de escape
-                    longitud ++; // Se aumenta la longitud en 1 por que 7D no esta es parte de la trama
+                    longitud ++; // Se aumenta la longitud en 1 por que 7D no esta en parte de la trama
                     flag = true ; // Se activa cuando se encuentra una secuencia de escape
                     suma -= 0x7D ; // Se le resta el byte que identifica el escape 7D
                 }
-                sub_trama = sub_trama + byte; // Se encadena el byte a las subtramas 
+                sub_trama = sub_trama + byte; // Se encadena el byte a las subtramas
                 suma += stoi(byte, nullptr, 16); // Se lleva a cabo una suma de el byte para verificar el checksum pasando el caracter a base 10
                 j += 2; // j es el contador de la trama hasta la longitud
             }
