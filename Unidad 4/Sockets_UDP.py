@@ -28,7 +28,7 @@ def receive_messages():
 
 def send_messages():
     while True:
-        msg = input("> :")
+        msg = input()
         if msg.strip().lower() == 'exit':
             message = f"> :{username}:exit"
             sock.sendto(message.encode('utf-8'), (BROADCAST_IP, PORT))
