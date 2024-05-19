@@ -39,7 +39,7 @@ def send_messages():
             sock.sendto(message.encode('utf-8'), (BROADCAST_IP, PORT))
 
 # Enviar mensaje de unión
-sock.sendto(f"> :{username}:nuevo".encode('utf-8'), (BROADCAST_IP, PORT))
+sock.sendto(f"{username}:nuevo".encode('utf-8'), (BROADCAST_IP, PORT))
 
 # Crear hilos para enviar y recibir mensajes
 receive_thread = threading.Thread(target=receive_messages)
