@@ -19,27 +19,27 @@ def receive_messages():
         message = data.decode('utf-8')
         user, msg = message.split(':', 1)
         if msg.strip() == 'exit':
-            print(f"El usuario {user} ({addr[0]}) ha abandonado la conversación")
+            print(f"< :El usuario {user} ({addr[0]}) ha abandonado la conversación")
             break
         elif msg.strip() == 'nuevo':
-            print(f"El usuario {user} se ha unido a la conversación")
+            print(f"< :El usuario {user} se ha unido a la conversación")
         else:
-            print(f"{user} ({addr[0]}) dice: {msg}")
+            print(f"< :{user} ({addr[0]}) dice: {msg}")
 
 def send_messages():
     while True:
-        msg = input()
+        msg = input("> :")
         if msg.strip().lower() == 'exit':
-            message = f"{username}:exit"
+            message = f"> :{username}:exit"
             sock.sendto(message.encode('utf-8'), (BROADCAST_IP, PORT))
-            print("Has abandonado la conversación")
+            print("> :Has abandonado la conversación")
             break
         else:
             message = f"{username}:{msg}"
             sock.sendto(message.encode('utf-8'), (BROADCAST_IP, PORT))
 
 # Enviar mensaje de unión
-sock.sendto(f"{username}:nuevo".encode('utf-8'), (BROADCAST_IP, PORT))
+sock.sendto(f"> :{username}:nuevo".encode('utf-8'), (BROADCAST_IP, PORT))
 
 # Crear hilos para enviar y recibir mensajes
 receive_thread = threading.Thread(target=receive_messages)
