@@ -3,7 +3,7 @@ import threading
 
 # Configuración del cliente
 server_ip = input("Ingrese la IP del servidor: ")
-server_port = 5000
+server_port = 60000
 
 # Crear socket TCP
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

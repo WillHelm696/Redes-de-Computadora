@@ -2,8 +2,8 @@ import socket
 import threading
 
 # Configuración del servidor
-server_ip = '0.0.0.0'
-server_port = 5000
+server_ip = ''
+server_port = 60000
 
 # Crear socket TCP
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
