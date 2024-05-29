@@ -70,6 +70,17 @@ def receve_connections():
 
 receve_connections()
 
+# Función para manejar la señal de interrupción
+def signal_handler(sig, frame):
+    print('Deteniendo el servidor...')
+    for client in clients:
+        client.close()
+    conn.close()
+    sys.exit(0)
+
+# Registrar la señal de interrupción cuando aprietas ctrl+C
+signal.signal(signal.SIGINT, signal_handler)
+
 ############################################################################################################
 
 import socket
