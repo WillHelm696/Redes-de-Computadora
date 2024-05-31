@@ -34,14 +34,14 @@ if os.path.exists(db_file):
 else:
     messages = []
 
-def store_message(ip, username, message,recipient=None):
-    messages.append((ip, username, message,recipient))
+def store_message(ip, username, message, recipient=None):
+    messages.append((ip, username, message, recipient))
     with open(db_file, 'wb') as f:
         pickle.dump(messages, f)
 
 def get_message_history(requester_username):
     public_messages = [msg for msg in messages if msg[3] is None]
-    private_messages += [msg for msg in messages if msg[3] == requester_username or msg[1] == requester_username]
+    private_messages = [msg for msg in messages if msg[3] == requester_username or msg[1] == requester_username]
     return public_messages + private_messages
 
 def disconneted(client_socket):
@@ -59,19 +59,17 @@ def broadcast(message, client_socket):
         if client != client_socket:
             client.send(message)
 
-def send_private_message(sender,recipient_usernme,message):
-    if recipient_usernme in usernames:
-        recipient_index = usernames.index(recipient_usernme)
-        recipient_socket = clients[recipient_index] 
+def send_private_message(sender, recipient_username, message):
+    if recipient_username in usernames:
+        recipient_index = usernames.index(recipient_username)
+        recipient_socket = clients[recipient_index]
         sender_index = clients.index(sender)
         sender_username = usernames[sender_index]
-        
-        private_message = f"Privado de {sender_username} : {message}".encode('utf-8')
+        private_message = f"Privado de {sender_username}: {message}".encode('utf-8')
         recipient_socket.send(private_message)
-
-        store_message(client_addresses[sender_index],sender_username,f"Privado para {recipient_usernme} : {message}".encode('utf-8'),recipient_usernme)
+        store_message(client_addresses[sender_index], sender_username, f"Privado para {recipient_username}: {message}", recipient_username)
     else:
-        sender.send(f"Usuario {recipient_usernme} no encontrado.".encode('utf-8'))
+        sender.send(f"Usuario {recipient_username} no encontrado.".encode('utf-8'))
 
 # Función para manejar los mensajes de los clientes
 def handle_client(client_socket, client_address):
@@ -86,22 +84,22 @@ def handle_client(client_socket, client_address):
                 client_socket.close()
                 break
             elif message == 'history':
-                history = get_message_history()
-                history_message = '\n'.join([f"{ip} ({username}): {msg}" for ip, username, msg in history])
-                client_socket.send(history_message.encode('utf-8'))
+                index = clients.index(client_socket)
+                username = usernames[index]
+                history = get_message_history(username)
+                history_message = '\n'.join([f"{ip} ({username}): {msg}" for ip, username, msg, _ in history])
+                client_socket.sendall(history_message.encode('utf-8'))
             elif message.startswith('@'):
-                recipient_usernme,private_message = message.split(' ', 1)
-                recipient_usernme = recipient_usernme[1:] # Remueve el prefijo '@'
-
-                send_private_message(client_socket,recipient_usernme,private_message)
-
+                recipient_username, private_message = message.split(' ', 1)
+                recipient_username = recipient_username[1:]  # Remove '@' prefix
+                send_private_message(client_socket, recipient_username, private_message)
             else:
                 print(f"{client_address}: {message}")
                 index = clients.index(client_socket)
                 username = usernames[index]
                 ip = client_addresses[index]
                 store_message(ip, username, message)
-                broadcast(message.encode('utf-8'), client_socket)
+                broadcast(f"{username}: {message}".encode('utf-8'), client_socket)
         except:
             disconneted(client_socket)
             print(f"{client_address} Error de conexión con el cliente.")
