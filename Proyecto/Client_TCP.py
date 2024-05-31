@@ -36,35 +36,3 @@ while True:
         print("Conexión cerrada.")
         client_socket.close()
         break
-
-############################################################################################################
-
-import socket
-import threading
-
-# Configuración del cliente
-HOST = '127.0.0.1'
-PORT = 60000
-
-username = input("Ingrese su nombre de usuario: ")
-
-def send_messages(s):
-    while True:
-        message = input()
-        if message.lower() == 'exit':
-            s.sendall(f"{username}:exit".encode('utf-8'))
-            break
-        s.sendall(f"{username}:{message}".encode('utf-8'))
-
-def receive_messages(s):
-    while True:
-        data = s.recv(1024)
-        if not data:
-            break
-        print(data.decode('utf-8'))
-
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
-    s.sendall(username.encode('utf-8'))
-    threading.Thread(target=receive_messages, args=(s,)).start()
-    send_messages(s)
