@@ -36,3 +36,7 @@ while True:
         print("Conexión cerrada.")
         client_socket.close()
         break
+    elif "ChatBot: Contraseña incorrecta." in message:
+        print("Contraseña incorrecta. Desconectando...")
+        client_socket.close()
+        break

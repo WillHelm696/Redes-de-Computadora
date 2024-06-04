@@ -1,0 +1,514 @@
+# Nmap 7.80 scan initiated Tue Jun  4 01:12:01 2024 as: nmap -Pn -sP -oN north-korea-ping.txt 175.45.191.0/24
+Nmap scan report for 175.45.191.0
+Host is up.
+Nmap scan report for gw-bdc.ub.ac.id (175.45.191.1)
+Host is up.
+Nmap scan report for 175.45.191.2
+Host is up.
+Nmap scan report for c3560mipa.ub.ac.id (175.45.191.3)
+Host is up.
+Nmap scan report for c3560biologi.ub.ac.id (175.45.191.4)
+Host is up.
+Nmap scan report for c3560gs.ub.ac.id (175.45.191.5)
+Host is up.
+Nmap scan report for c3560elektro.ub.ac.id (175.45.191.6)
+Host is up.
+Nmap scan report for c3560mesin.ub.ac.id (175.45.191.7)
+Host is up.
+Nmap scan report for c3560gbe.ub.ac.id (175.45.191.8)
+Host is up.
+Nmap scan report for c3560mgw.ub.ac.id (175.45.191.9)
+Host is up.
+Nmap scan report for c3560pengairan.ub.ac.id (175.45.191.10)
+Host is up.
+Nmap scan report for c3560ftdekanat.ub.ac.id (175.45.191.11)
+Host is up.
+Nmap scan report for c3560fia.ub.ac.id (175.45.191.12)
+Host is up.
+Nmap scan report for c3560fiadekanat.ub.ac.id (175.45.191.13)
+Host is up.
+Nmap scan report for c3560fisip.ub.ac.id (175.45.191.14)
+Host is up.
+Nmap scan report for c3560ilmutanah.ub.ac.id (175.45.191.15)
+Host is up.
+Nmap scan report for c3560pertanian.ub.ac.id (175.45.191.16)
+Host is up.
+Nmap scan report for c3560perikanan.ub.ac.id (175.45.191.17)
+Host is up.
+Nmap scan report for c3560peternakan.ub.ac.id (175.45.191.18)
+Host is up.
+Nmap scan report for c3560perpus.ub.ac.id (175.45.191.19)
+Host is up.
+Nmap scan report for c3560ftp.ub.ac.id (175.45.191.20)
+Host is up.
+Nmap scan report for c3560sakri.ub.ac.id (175.45.191.21)
+Host is up.
+Nmap scan report for c3560fk.ub.ac.id (175.45.191.22)
+Host is up.
+Nmap scan report for c3560kimia2.ub.ac.id (175.45.191.23)
+Host is up.
+Nmap scan report for c3560kediri.ub.ac.id (175.45.191.24)
+Host is up.
+Nmap scan report for c3560widyaloka.ub.ac.id (175.45.191.25)
+Host is up.
+Nmap scan report for radio-sw.ub.ac.id (175.45.191.26)
+Host is up.
+Nmap scan report for lt3-sw.ub.ac.id (175.45.191.27)
+Host is up.
+Nmap scan report for 175.45.191.28
+Host is up.
+Nmap scan report for 175.45.191.29
+Host is up.
+Nmap scan report for 175.45.191.30
+Host is up.
+Nmap scan report for 175.45.191.31
+Host is up.
+Nmap scan report for 175.45.191.32
+Host is up.
+Nmap scan report for 175.45.191.33
+Host is up.
+Nmap scan report for 175.45.191.34
+Host is up.
+Nmap scan report for 175.45.191.35
+Host is up.
+Nmap scan report for 175.45.191.36
+Host is up.
+Nmap scan report for 175.45.191.37
+Host is up.
+Nmap scan report for 175.45.191.38
+Host is up.
+Nmap scan report for 175.45.191.39
+Host is up.
+Nmap scan report for 175.45.191.40
+Host is up.
+Nmap scan report for 175.45.191.41
+Host is up.
+Nmap scan report for 175.45.191.42
+Host is up.
+Nmap scan report for 175.45.191.43
+Host is up.
+Nmap scan report for 175.45.191.44
+Host is up.
+Nmap scan report for 175.45.191.45
+Host is up.
+Nmap scan report for 175.45.191.46
+Host is up.
+Nmap scan report for 175.45.191.47
+Host is up.
+Nmap scan report for 175.45.191.48
+Host is up.
+Nmap scan report for 175.45.191.49
+Host is up.
+Nmap scan report for 175.45.191.50
+Host is up.
+Nmap scan report for 175.45.191.51
+Host is up.
+Nmap scan report for 175.45.191.52
+Host is up.
+Nmap scan report for 175.45.191.53
+Host is up.
+Nmap scan report for 175.45.191.54
+Host is up.
+Nmap scan report for 175.45.191.55
+Host is up.
+Nmap scan report for 175.45.191.56
+Host is up.
+Nmap scan report for 175.45.191.57
+Host is up.
+Nmap scan report for 175.45.191.58
+Host is up.
+Nmap scan report for 175.45.191.59
+Host is up.
+Nmap scan report for 175.45.191.60
+Host is up.
+Nmap scan report for 175.45.191.61
+Host is up.
+Nmap scan report for 175.45.191.62
+Host is up.
+Nmap scan report for 175.45.191.63
+Host is up.
+Nmap scan report for 175.45.191.64
+Host is up.
+Nmap scan report for 175.45.191.65
+Host is up.
+Nmap scan report for 175.45.191.66
+Host is up.
+Nmap scan report for 175.45.191.67
+Host is up.
+Nmap scan report for 175.45.191.68
+Host is up.
+Nmap scan report for 175.45.191.69
+Host is up.
+Nmap scan report for 175.45.191.70
+Host is up.
+Nmap scan report for 175.45.191.71
+Host is up.
+Nmap scan report for 175.45.191.72
+Host is up.
+Nmap scan report for 175.45.191.73
+Host is up.
+Nmap scan report for 175.45.191.74
+Host is up.
+Nmap scan report for 175.45.191.75
+Host is up.
+Nmap scan report for 175.45.191.76
+Host is up.
+Nmap scan report for 175.45.191.77
+Host is up.
+Nmap scan report for 175.45.191.78
+Host is up.
+Nmap scan report for 175.45.191.79
+Host is up.
+Nmap scan report for 175.45.191.80
+Host is up.
+Nmap scan report for 175.45.191.81
+Host is up.
+Nmap scan report for 175.45.191.82
+Host is up.
+Nmap scan report for 175.45.191.83
+Host is up.
+Nmap scan report for 175.45.191.84
+Host is up.
+Nmap scan report for 175.45.191.85
+Host is up.
+Nmap scan report for 175.45.191.86
+Host is up.
+Nmap scan report for 175.45.191.87
+Host is up.
+Nmap scan report for 175.45.191.88
+Host is up.
+Nmap scan report for 175.45.191.89
+Host is up.
+Nmap scan report for 175.45.191.90
+Host is up.
+Nmap scan report for 175.45.191.91
+Host is up.
+Nmap scan report for 175.45.191.92
+Host is up.
+Nmap scan report for 175.45.191.93
+Host is up.
+Nmap scan report for 175.45.191.94
+Host is up.
+Nmap scan report for 175.45.191.95
+Host is up.
+Nmap scan report for 175.45.191.96
+Host is up.
+Nmap scan report for 175.45.191.97
+Host is up.
+Nmap scan report for 175.45.191.98
+Host is up.
+Nmap scan report for 175.45.191.99
+Host is up.
+Nmap scan report for 175.45.191.100
+Host is up.
+Nmap scan report for 175.45.191.101
+Host is up.
+Nmap scan report for 175.45.191.102
+Host is up.
+Nmap scan report for 175.45.191.103
+Host is up.
+Nmap scan report for 175.45.191.104
+Host is up.
+Nmap scan report for 175.45.191.105
+Host is up.
+Nmap scan report for 175.45.191.106
+Host is up.
+Nmap scan report for 175.45.191.107
+Host is up.
+Nmap scan report for 175.45.191.108
+Host is up.
+Nmap scan report for 175.45.191.109
+Host is up.
+Nmap scan report for 175.45.191.110
+Host is up.
+Nmap scan report for 175.45.191.111
+Host is up.
+Nmap scan report for 175.45.191.112
+Host is up.
+Nmap scan report for 175.45.191.113
+Host is up.
+Nmap scan report for 175.45.191.114
+Host is up.
+Nmap scan report for 175.45.191.115
+Host is up.
+Nmap scan report for 175.45.191.116
+Host is up.
+Nmap scan report for 175.45.191.117
+Host is up.
+Nmap scan report for 175.45.191.118
+Host is up.
+Nmap scan report for 175.45.191.119
+Host is up.
+Nmap scan report for 175.45.191.120
+Host is up.
+Nmap scan report for 175.45.191.121
+Host is up.
+Nmap scan report for 175.45.191.122
+Host is up.
+Nmap scan report for 175.45.191.123
+Host is up.
+Nmap scan report for 175.45.191.124
+Host is up.
+Nmap scan report for 175.45.191.125
+Host is up.
+Nmap scan report for 175.45.191.126
+Host is up.
+Nmap scan report for 175.45.191.127
+Host is up.
+Nmap scan report for 175.45.191.128
+Host is up.
+Nmap scan report for 175.45.191.129
+Host is up.
+Nmap scan report for 175.45.191.130
+Host is up.
+Nmap scan report for 175.45.191.131
+Host is up.
+Nmap scan report for 175.45.191.132
+Host is up.
+Nmap scan report for 175.45.191.133
+Host is up.
+Nmap scan report for 175.45.191.134
+Host is up.
+Nmap scan report for 175.45.191.135
+Host is up.
+Nmap scan report for 175.45.191.136
+Host is up.
+Nmap scan report for 175.45.191.137
+Host is up.
+Nmap scan report for 175.45.191.138
+Host is up.
+Nmap scan report for 175.45.191.139
+Host is up.
+Nmap scan report for 175.45.191.140
+Host is up.
+Nmap scan report for 175.45.191.141
+Host is up.
+Nmap scan report for 175.45.191.142
+Host is up.
+Nmap scan report for 175.45.191.143
+Host is up.
+Nmap scan report for 175.45.191.144
+Host is up.
+Nmap scan report for 175.45.191.145
+Host is up.
+Nmap scan report for 175.45.191.146
+Host is up.
+Nmap scan report for 175.45.191.147
+Host is up.
+Nmap scan report for 175.45.191.148
+Host is up.
+Nmap scan report for 175.45.191.149
+Host is up.
+Nmap scan report for 175.45.191.150
+Host is up.
+Nmap scan report for 175.45.191.151
+Host is up.
+Nmap scan report for 175.45.191.152
+Host is up.
+Nmap scan report for 175.45.191.153
+Host is up.
+Nmap scan report for 175.45.191.154
+Host is up.
+Nmap scan report for 175.45.191.155
+Host is up.
+Nmap scan report for 175.45.191.156
+Host is up.
+Nmap scan report for 175.45.191.157
+Host is up.
+Nmap scan report for 175.45.191.158
+Host is up.
+Nmap scan report for 175.45.191.159
+Host is up.
+Nmap scan report for 175.45.191.160
+Host is up.
+Nmap scan report for 175.45.191.161
+Host is up.
+Nmap scan report for 175.45.191.162
+Host is up.
+Nmap scan report for 175.45.191.163
+Host is up.
+Nmap scan report for 175.45.191.164
+Host is up.
+Nmap scan report for 175.45.191.165
+Host is up.
+Nmap scan report for 175.45.191.166
+Host is up.
+Nmap scan report for 175.45.191.167
+Host is up.
+Nmap scan report for 175.45.191.168
+Host is up.
+Nmap scan report for 175.45.191.169
+Host is up.
+Nmap scan report for 175.45.191.170
+Host is up.
+Nmap scan report for 175.45.191.171
+Host is up.
+Nmap scan report for 175.45.191.172
+Host is up.
+Nmap scan report for 175.45.191.173
+Host is up.
+Nmap scan report for 175.45.191.174
+Host is up.
+Nmap scan report for 175.45.191.175
+Host is up.
+Nmap scan report for 175.45.191.176
+Host is up.
+Nmap scan report for 175.45.191.177
+Host is up.
+Nmap scan report for 175.45.191.178
+Host is up.
+Nmap scan report for 175.45.191.179
+Host is up.
+Nmap scan report for 175.45.191.180
+Host is up.
+Nmap scan report for 175.45.191.181
+Host is up.
+Nmap scan report for 175.45.191.182
+Host is up.
+Nmap scan report for 175.45.191.183
+Host is up.
+Nmap scan report for 175.45.191.184
+Host is up.
+Nmap scan report for 175.45.191.185
+Host is up.
+Nmap scan report for 175.45.191.186
+Host is up.
+Nmap scan report for 175.45.191.187
+Host is up.
+Nmap scan report for 175.45.191.188
+Host is up.
+Nmap scan report for 175.45.191.189
+Host is up.
+Nmap scan report for 175.45.191.190
+Host is up.
+Nmap scan report for 175.45.191.191
+Host is up.
+Nmap scan report for 175.45.191.192
+Host is up.
+Nmap scan report for 175.45.191.193
+Host is up.
+Nmap scan report for 175.45.191.194
+Host is up.
+Nmap scan report for 175.45.191.195
+Host is up.
+Nmap scan report for 175.45.191.196
+Host is up.
+Nmap scan report for 175.45.191.197
+Host is up.
+Nmap scan report for 175.45.191.198
+Host is up.
+Nmap scan report for 175.45.191.199
+Host is up.
+Nmap scan report for 175.45.191.200
+Host is up.
+Nmap scan report for 175.45.191.201
+Host is up.
+Nmap scan report for 175.45.191.202
+Host is up.
+Nmap scan report for 175.45.191.203
+Host is up.
+Nmap scan report for 175.45.191.204
+Host is up.
+Nmap scan report for 175.45.191.205
+Host is up.
+Nmap scan report for 175.45.191.206
+Host is up.
+Nmap scan report for 175.45.191.207
+Host is up.
+Nmap scan report for 175.45.191.208
+Host is up.
+Nmap scan report for 175.45.191.209
+Host is up.
+Nmap scan report for 175.45.191.210
+Host is up.
+Nmap scan report for 175.45.191.211
+Host is up.
+Nmap scan report for 175.45.191.212
+Host is up.
+Nmap scan report for 175.45.191.213
+Host is up.
+Nmap scan report for 175.45.191.214
+Host is up.
+Nmap scan report for 175.45.191.215
+Host is up.
+Nmap scan report for 175.45.191.216
+Host is up.
+Nmap scan report for 175.45.191.217
+Host is up.
+Nmap scan report for 175.45.191.218
+Host is up.
+Nmap scan report for 175.45.191.219
+Host is up.
+Nmap scan report for 175.45.191.220
+Host is up.
+Nmap scan report for 175.45.191.221
+Host is up.
+Nmap scan report for 175.45.191.222
+Host is up.
+Nmap scan report for 175.45.191.223
+Host is up.
+Nmap scan report for 175.45.191.224
+Host is up.
+Nmap scan report for 175.45.191.225
+Host is up.
+Nmap scan report for 175.45.191.226
+Host is up.
+Nmap scan report for 175.45.191.227
+Host is up.
+Nmap scan report for 175.45.191.228
+Host is up.
+Nmap scan report for 175.45.191.229
+Host is up.
+Nmap scan report for 175.45.191.230
+Host is up.
+Nmap scan report for 175.45.191.231
+Host is up.
+Nmap scan report for 175.45.191.232
+Host is up.
+Nmap scan report for 175.45.191.233
+Host is up.
+Nmap scan report for 175.45.191.234
+Host is up.
+Nmap scan report for 175.45.191.235
+Host is up.
+Nmap scan report for 175.45.191.236
+Host is up.
+Nmap scan report for 175.45.191.237
+Host is up.
+Nmap scan report for 175.45.191.238
+Host is up.
+Nmap scan report for 175.45.191.239
+Host is up.
+Nmap scan report for 175.45.191.240
+Host is up.
+Nmap scan report for 175.45.191.241
+Host is up.
+Nmap scan report for 175.45.191.242
+Host is up.
+Nmap scan report for 175.45.191.243
+Host is up.
+Nmap scan report for 175.45.191.244
+Host is up.
+Nmap scan report for 175.45.191.245
+Host is up.
+Nmap scan report for 175.45.191.246
+Host is up.
+Nmap scan report for 175.45.191.247
+Host is up.
+Nmap scan report for 175.45.191.248
+Host is up.
+Nmap scan report for 175.45.191.249
+Host is up.
+Nmap scan report for 175.45.191.250
+Host is up.
+Nmap scan report for nat.ub.ac.id (175.45.191.251)
+Host is up.
+Nmap scan report for nat.ub.ac.id (175.45.191.252)
+Host is up.
+Nmap scan report for nat.ub.ac.id (175.45.191.253)
+Host is up.
+Nmap scan report for nat.ub.ac.id (175.45.191.254)
+Host is up.
+Nmap scan report for 175.45.191.255
+Host is up.
+# Nmap done at Tue Jun  4 01:12:07 2024 -- 256 IP addresses (256 hosts up) scanned in 5.82 seconds

@@ -25,6 +25,7 @@ passwords = {}
 # Ruta del archivo de la base de datos
 db_folder = 'database'
 db_file = os.path.join(db_folder, 'chat.pkl')
+users_file = os.path.join(db_folder, 'users.pkl')
 
 # Crear la carpeta de la base de datos si no existe
 os.makedirs(db_folder, exist_ok=True)
@@ -36,34 +37,40 @@ if os.path.exists(db_file):
 else:
     messages = []
 
-#Funcion que guarda los mensajes en un archivo pickle
+# Cargar usuarios y contraseñas de la base de datos
+if os.path.exists(users_file):
+    with open(users_file, 'rb') as f:
+        stored_users = pickle.load(f)
+        usernames = list(stored_users.keys())
+        passwords = stored_users
+else:
+    stored_users = {}
+
+# Función que guarda los mensajes en un archivo pickle
 def store_message(ip, username, message, recipient=None):
     messages.append((ip, username, message, recipient))
     with open(db_file, 'wb') as f:
         pickle.dump(messages, f)
 
-#Devuelve el historial del usuario
+# Función para devolver el historial del usuario
 def get_message_history(requester_username):
     public_messages = [msg for msg in messages if msg[3] is None]
     private_messages = [msg for msg in messages if msg[3] == requester_username or msg[1] == requester_username]
     return public_messages + private_messages
 
-#Funcion que desconecta al Ususario
+# Función que desconecta al usuario
 def disconneted(client_socket):
-    #Busca el nombre de ususario
-    index = clients.index(client_socket)
-    username = usernames[index]
-    #La ip del cliente
-    ip = client_addresses[index]
-    #Crea el mensaje y lo envia a los ususarios
-    message = f"ChatBot:{username} ({ip}) se ha desconectado".encode('utf-8')
-    broadcast(message, client_socket)
-    #Elimina de de las listas clients, usernames, client_adresses
-    clients.remove(client_socket)
-    usernames.remove(username)
-    client_addresses.remove(ip)
+    if client_socket in clients:
+        index = clients.index(client_socket)
+        username = usernames[index]
+        ip = client_addresses[index]
+        message = f"ChatBot: {username} ({ip}) se ha desconectado".encode('utf-8')
+        broadcast(message, client_socket)
+        clients.remove(client_socket)
+        usernames.remove(username)
+        client_addresses.remove(ip)
 
-#Funcion que envia los mensajes publicos
+# Función que envía los mensajes públicos
 def broadcast(message, client_socket):
     for client in clients:
         if client != client_socket:
@@ -71,21 +78,17 @@ def broadcast(message, client_socket):
 
 def send_private_message(sender, recipient_username, message):
     if recipient_username in usernames:
-        #Encuentra el Destinatario
         recipient_index = usernames.index(recipient_username)
         recipient_socket = clients[recipient_index]
-        #Encuentra el Remitente
         sender_index = clients.index(sender)
         sender_username = usernames[sender_index]
-        #Crear el mensaje privado y enviarlo
         private_message = f"Privado de {sender_username}: {message}".encode('utf-8')
         recipient_socket.send(private_message)
-        #Guardar mensaje privado
         store_message(client_addresses[sender_index], sender_username, f"Privado para {recipient_username}: {message}", recipient_username)
     else:
         sender.send(f"Usuario {recipient_username} no encontrado.".encode('utf-8'))
 
-#Algoritmo de hashing SHA-256
+# Algoritmo de hashing SHA-256
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
@@ -99,20 +102,23 @@ def handle_client(client_socket, client_address):
         # Solicitar contraseña
         client_socket.send("ChatBot: Introduce contraseña:".encode('utf-8'))
         password = client_socket.recv(1024).decode('utf-8')
-        
-        # Guardar nombre de usuario y contraseña
+
+        # Guardar el nombre de usuario y la contraseña para ususarios nuevos
         if username not in usernames:
             usernames.append(username)
             clients.append(client_socket)
             client_addresses.append(client_address[0])
             passwords[username] = hash_password(password)
-            message = f"ChatBot : {username} ({client_address[0]}) se ha unido al chat".encode('utf-8')
+            #Almaena en un archivo pickle users
+            stored_users[username] = passwords[username]
+            with open(users_file, 'wb') as f:
+                pickle.dump(stored_users, f)
+            message = f"ChatBot: {username} ({client_address[0]}) se ha unido al chat".encode('utf-8')
             broadcast(message, client_socket)
-        
-        #si el usuario exite verifica la contraseña
+        # Verificar la contraseña si el usuario ya existe
         else:
             if passwords[username] != hash_password(password):
-                client_socket.send("ChatBot: Contraseña incorrecta.".encode('utf-8'))
+                client_socket.send("ChatBot: Contraseña incorrecta. Desconectando...".encode('utf-8'))
                 client_socket.close()
                 return
 
@@ -124,28 +130,21 @@ def handle_client(client_socket, client_address):
                 disconneted(client_socket)
                 client_socket.close()
                 break
-            
-            #Solisitud del historial del usuario
             elif message == 'history':
                 client_socket.send("ChatBot: Introduce contraseña para ver el historial:".encode('utf-8'))
                 password = client_socket.recv(1024).decode('utf-8')
                 index = clients.index(client_socket)
                 username = usernames[index]
-                #Verificar la contraseña del Ususario
                 if passwords[username] == hash_password(password):
                     history = get_message_history(username)
                     history_message = '\n'.join([f"{ip} ({username}): {msg}" for ip, username, msg, _ in history])
                     client_socket.sendall(history_message.encode('utf-8'))
                 else:
                     client_socket.send("ChatBot: Contraseña incorrecta.".encode('utf-8'))
-            
-            #Si es un mensaje privado verifica el '@' 
             elif message.startswith('@'):
                 recipient_username, private_message = message.split(' ', 1)
-                recipient_username = recipient_username[1:]  # Remove '@' prefix
+                recipient_username = recipient_username[1:]  # Eliminar el prefijo '@'
                 send_private_message(client_socket, recipient_username, private_message)
-            
-            #El mensaje se enivara a todos los usuarios
             else:
                 print(f"{client_address}: {message}")
                 index = clients.index(client_socket)
@@ -154,29 +153,25 @@ def handle_client(client_socket, client_address):
                 store_message(ip, username, message)
                 broadcast(f"{username}: {message}".encode('utf-8'), client_socket)
 
-    #Si hay una falla en la conexion desconecta al cliente
     except Exception as e:
         print(f"Error: {e}")
         disconneted(client_socket)
         client_socket.close()
 
-
-def receve_connections():
+def receive_connections():
     # Aceptar conexiones de los clientes
     while True:
         client_socket, client_address = server_socket.accept()
         client_handler = threading.Thread(target=handle_client, args=(client_socket, client_address))
         client_handler.start()
 
-# Función para manejar la señal de interrupción (Por ej: Ctl+C)
+# Función para manejar la señal de interrupción (por ejemplo, Ctrl+C)
 def signal_handler(sig, frame):
     print('Deteniendo el servidor...')
     for client in clients:
-        message = "exit"
-        broadcast(message, client)
+        client.send('exit'.encode('utf-8'))
         client.close()
     sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
-
-receve_connections()
+receive_connections()
