@@ -156,10 +156,12 @@ def handle_client(client_socket, client_address):
                     client_socket.send('exit'.encode('utf-8'))
                     disconnected(client_socket)
                     client_socket.close()
+            # Este codigo detecta mensajes privados si comiensa con @
             elif message.startswith('@'):
                 recipient_username, private_message = message.split(' ', 1)
                 recipient_username = recipient_username[1:]  # Eliminar el prefijo '@'
                 send_private_message(client_socket, recipient_username, private_message)
+            # Este codigo es para los mensajes publicos
             else:
                 print(f"{client_address}: {message}")
                 index = clients.index(client_socket)

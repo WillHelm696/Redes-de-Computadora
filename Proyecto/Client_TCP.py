@@ -19,9 +19,10 @@ def receive_messages(client_socket):
                 client_socket.close()
                 break
             print(message)
-            if "ChatBot: Contraseña incorrecta." in message:
-                client_socket.close()
-                break
+        except ConnectionResetError:
+            print("Conexión cerrada por el servidor.")
+            client_socket.close()
+            break
         except:
             print("Error de conexión con el servidor.")
             client_socket.close()
@@ -37,5 +38,9 @@ while True:
     client_socket.send(message.encode('utf-8'))
     if message == 'exit':
         print("Conexión cerrada.")
+        client_socket.close()
+        break
+    elif "ChatBot: Contraseña incorrecta. Desconectando..." in message:
+        print(message)
         client_socket.close()
         break
