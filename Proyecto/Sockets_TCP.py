@@ -59,7 +59,7 @@ def get_message_history(requester_username):
     return public_messages + private_messages
 
 # Función que desconecta al usuario
-def disconneted(client_socket):
+def disconnected(client_socket):
     if client_socket in clients:
         index = clients.index(client_socket)
         username = usernames[index]
@@ -71,22 +71,23 @@ def disconneted(client_socket):
         client_addresses.remove(ip)
 
 # Función que envía los mensajes públicos
-def broadcast(message, client_socket):
-    for client in clients:
-        if client != client_socket:
-            client.send(message)
+def broadcast(message, sender_socket):
+    for client_socket in clients:
+        if client_socket != sender_socket:
+            client_socket.send(message)
 
-def send_private_message(sender, recipient_username, message):
+# Función para enviar mensajes privados a un usuario
+def send_private_message(sender_socket, recipient_username, message):
     if recipient_username in usernames:
         recipient_index = usernames.index(recipient_username)
         recipient_socket = clients[recipient_index]
-        sender_index = clients.index(sender)
+        sender_index = clients.index(sender_socket)
         sender_username = usernames[sender_index]
         private_message = f"Privado de {sender_username}: {message}".encode('utf-8')
         recipient_socket.send(private_message)
         store_message(client_addresses[sender_index], sender_username, f"Privado para {recipient_username}: {message}", recipient_username)
     else:
-        sender.send(f"Usuario {recipient_username} no encontrado.".encode('utf-8'))
+        sender_socket.send(f"Usuario {recipient_username} no encontrado.".encode('utf-8'))
 
 # Algoritmo de hashing SHA-256
 def hash_password(password):
@@ -103,19 +104,19 @@ def handle_client(client_socket, client_address):
         client_socket.send("ChatBot: Introduce contraseña:".encode('utf-8'))
         password = client_socket.recv(1024).decode('utf-8')
 
-        # Guardar el nombre de usuario y la contraseña para ususarios nuevos
+        # Guardar el nombre de usuario y la contraseña para usuarios nuevos
         if username not in usernames:
             usernames.append(username)
             clients.append(client_socket)
             client_addresses.append(client_address[0])
             passwords[username] = hash_password(password)
-            #Almaena en un archivo pickle users
+            # Almacenar en un archivo pickle los usuarios
             stored_users[username] = passwords[username]
             with open(users_file, 'wb') as f:
                 pickle.dump(stored_users, f)
             message = f"ChatBot: {username} ({client_address[0]}) se ha unido al chat".encode('utf-8')
             broadcast(message, client_socket)
-        # Verificar la contraseña si el usuario ya existe
+        # Verificar la contraseña si el usuario ya entró antes
         else:
             if passwords[username] != hash_password(password):
                 client_socket.send("ChatBot: Contraseña incorrecta. Desconectando...".encode('utf-8'))
@@ -127,20 +128,34 @@ def handle_client(client_socket, client_address):
             if message == 'exit':
                 print(f"{client_address} Cliente se ha desconectado.")
                 client_socket.send('exit'.encode('utf-8'))
-                disconneted(client_socket)
+                disconnected(client_socket)
                 client_socket.close()
                 break
+            # Sección original que maneja la solicitud de historial
             elif message == 'history':
-                client_socket.send("ChatBot: Introduce contraseña para ver el historial:".encode('utf-8'))
-                password = client_socket.recv(1024).decode('utf-8')
-                index = clients.index(client_socket)
-                username = usernames[index]
-                if passwords[username] == hash_password(password):
-                    history = get_message_history(username)
-                    history_message = '\n'.join([f"{ip} ({username}): {msg}" for ip, username, msg, _ in history])
-                    client_socket.sendall(history_message.encode('utf-8'))
-                else:
-                    client_socket.send("ChatBot: Contraseña incorrecta.".encode('utf-8'))
+                attempts = 0
+                max_attempts = 3
+                # Este bucle verifica que haya intentado 3 veces introducir la contraseña vara ver la contraseña
+                while attempts < max_attempts:
+                    client_socket.send("ChatBot: Introduce contraseña para ver el historial:".encode('utf-8'))
+                    password = client_socket.recv(1024).decode('utf-8')
+                    index = clients.index(client_socket)
+                    username = usernames[index]
+                    #Si la contraseña fie verificada corectamente Devuelve el historial
+                    if passwords[username] == hash_password(password):
+                        history = get_message_history(username)
+                        history_message = '\n'.join([f"{ip} ({username}): {msg}" for ip, username, msg, _ in history])
+                        client_socket.sendall(history_message.encode('utf-8'))
+                        break
+                    else:
+                        attempts += 1
+                        client_socket.send(f"ChatBot: Contraseña incorrecta. Intentos restantes: {max_attempts - attempts}".encode('utf-8'))
+                # Si se terminaron los 3 intentos Sale del sevidor
+                if attempts == max_attempts:
+                    client_socket.send("ChatBot: Demasiados intentos fallidos. Desconectando...".encode('utf-8'))
+                    client_socket.send('exit'.encode('utf-8'))
+                    disconnected(client_socket)
+                    client_socket.close()
             elif message.startswith('@'):
                 recipient_username, private_message = message.split(' ', 1)
                 recipient_username = recipient_username[1:]  # Eliminar el prefijo '@'
@@ -155,7 +170,7 @@ def handle_client(client_socket, client_address):
 
     except Exception as e:
         print(f"Error: {e}")
-        disconneted(client_socket)
+        disconnected(client_socket)
         client_socket.close()
 
 def receive_connections():

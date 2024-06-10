@@ -76,7 +76,7 @@ def broadcast(message, sender_socket):
         if client_socket != sender_socket:
             client_socket.send(message)
 
-# Funcion para enviar mensajes privados a un usuario
+# Función para enviar mensajes privados a un usuario
 def send_private_message(sender_socket, recipient_username, message):
     if recipient_username in usernames:
         recipient_index = usernames.index(recipient_username)
@@ -116,7 +116,7 @@ def handle_client(client_socket, client_address):
                 pickle.dump(stored_users, f)
             message = f"ChatBot: {username} ({client_address[0]}) se ha unido al chat".encode('utf-8')
             broadcast(message, client_socket)
-        # Verificar la contraseña si el usuario ya entro antes
+        # Verificar la contraseña si el usuario ya entró antes
         else:
             if passwords[username] != hash_password(password):
                 client_socket.send("ChatBot: Contraseña incorrecta. Desconectando...".encode('utf-8'))
