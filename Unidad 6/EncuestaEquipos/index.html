@@ -1,0 +1,95 @@
+<!-- Encuesta HTML-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta UNCUYO</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <center>        
+        <img
+            id="logo"
+            src="https://despertadorlavalle.com.ar/wp-content/uploads/2017/09/logo-UNCuyo-alta-uuuuuuuuuuuuuuuuuu.jpg" 
+            alt="UNCUYO Logo"
+            style="width: 450px;"
+        />
+        <h2>Elija su equipo favorito</h2>
+        <form id="surveyForm" method="post" action="process.php">
+            <label for="email">Ingrese su e-mail:</label>
+            <input type="text" id="email" name="email" required />
+        </center>
+            <!--Boca Juniors-->
+            <label>
+                <input type="radio" name="team" value="Boca Juniors" />
+                Boca Juniors
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Boca_escudo.png" alt="Boca Juniors Logo" width="50" />
+            </label>
+            <!--River Plate-->
+            <label>
+                <input type="radio" name="team" value="River Plate" />
+                River Plate
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Logo_River_Plate.png" alt="River Plate Logo" width="40" />
+            </label>
+            <!--San Lorenso-->
+            <label>
+                <input type="radio" name="team" value="San Lorenzo" />
+                San Lorenzo
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Escudo_del_Club_Atl%C3%A9tico_San_Lorenzo_de_Almagro.png" alt="San Lorenzo Logo" width="40" />
+            </label>
+            <!--Racing-->
+            <label>
+                <input type="radio" name="team" value="Racing" />
+                Racing
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Escudo_de_Racing_de_Cordoba.png" alt="Racing Logo" width="40" />
+            </label>
+            <!--Independiente-->
+            <label>
+                <input type="radio" name="team" value="Independiente" />
+                Independiente
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Escudo_del_Club_Atl%C3%A9tico_Independiente.svg/474px-Escudo_del_Club_Atl%C3%A9tico_Independiente.svg.png" alt="Independiente Logo" width="40" />
+            </label>
+            <!--Otro-->
+            <br>
+            <label>
+                <input type="radio" name="team" value="Other" />
+                Otro
+            </label>
+            
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="results"></div>
+    </div>
+    <script>
+    // JavaScript para la validación del lado del cliente
+        const form = document.getElementById("surveyForm");
+        const emailInput = document.getElementById("email");
+        const resultsDiv = document.getElementById("results");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Evitar la sumisión predeterminada del formulario
+            const email = emailInput.value.trim();
+            // Validación básica del email
+            if (!validateEmail(email)) {
+                resultsDiv.innerHTML = "Por favor, ingrese un correo electrónico válido.";
+                return;
+            }
+            // Verificar si se seleccionó un equipo
+            if (!document.querySelector('input[name="team"]:checked')) {
+                resultsDiv.innerHTML = "Por favor, seleccione un equipo.";
+                return;
+            }
+            // Si la validación pasa, enviar el formulario
+            this.submit();
+        });
+
+        function validateEmail(email) {
+            // Implementar la lógica de validación del email
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+    </script>
+</body>
+</html>

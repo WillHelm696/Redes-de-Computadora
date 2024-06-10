@@ -1,0 +1,29 @@
+HTTrack3.49-2+libhtsjava.so.2 launched on Fri, 07 Jun 2024 23:56:05 at https://www.bancopatagonia.com.ar/personas/index.php +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/*
+(webhttrack -q -%i -w https://www.bancopatagonia.com.ar/personas/index.php -O "/home/william/Escritorio/Redes de Computadora/Unidad 7/websites/BancoPatagoniaClone" -%P -N0 -s2 -p1 -D -a -K0 -c4 -%k -r2 -%e1 -m10 -A25000 -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -%s -%u )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+23:56:08	Warning: 	Big file cancelled according to user's preferences: https://www.bancopatagonia.com.ar/robots.txt
+23:59:25	Warning: 	Big file cancelled according to user's preferences: https://bp.bancopatagonia.com.ar/robots.txt
+23:59:26	Warning: 	Found for www.clubpatagonia.com.ar/robots.txt
+23:59:26	Warning: 	Redirected link is identical because of 'URL Hack' option: www.clubpatagonia.com.ar/robots.txt and https://www.clubpatagonia.com.ar/robots.txt
+23:59:26	Warning: 	Warning moved treated for www.clubpatagonia.com.ar/robots.txt (real one is https://www.clubpatagonia.com.ar/robots.txt)
+23:59:26	Warning: 	Found for www.clubpatagonia.com.ar/
+23:59:26	Warning: 	Redirected link is identical because of 'URL Hack' option: www.clubpatagonia.com.ar/ and https://www.clubpatagonia.com.ar/
+23:59:26	Warning: 	File has moved from www.clubpatagonia.com.ar/ to https://www.clubpatagonia.com.ar/
+23:59:27	Warning: 	Big file cancelled according to user's preferences: ahorrosybeneficios.bancopatagonia.com.ar/robots.txt
+23:59:28	Warning: 	Big file cancelled according to user's preferences: https://www.bcra.gob.ar/robots.txt
+23:59:29	Warning: 	Big file cancelled according to user's preferences: www.bcra.gob.ar/robots.txt
+23:59:32	Warning: 	Big file cancelled according to user's preferences: https://apps.apple.com/robots.txt
+23:59:33	Warning: 	File not parsed, looks like binary: https://autogestion.produccion.gob.ar/robots.txt
+23:59:36	Warning: 	Big file cancelled according to user's preferences: https://x.com/robots.txt
+23:59:38	Warning: 	Big file cancelled according to user's preferences: https://www.youtube.com/robots.txt
+23:59:39	Warning: 	Big file cancelled according to user's preferences: sucursalesycajeros.bancopatagonia.com.ar/robots.txt
+23:59:39	Error: 	"OK" (-1) at link https://www.googletagmanager.com/gtag/js?id=G-C6LG1PT98X (from https://www.bancopatagonia.com.ar/personas/index.php)
+23:59:40	Warning: 	Big file cancelled according to user's preferences: https://www.allaccess.com.ar/robots.txt
+
+HTTrack Website Copier/3.49-2 mirror complete in 3 minutes 36 seconds : 212 links scanned, 190 files written (13405839 bytes overall) [2689640 bytes received at 12452 bytes/sec], 13285379 bytes transferred using HTTP compression in 191 files, ratio 17%, 4.4 requests per connection
+(1 errors, 17 warnings, 0 messages)
